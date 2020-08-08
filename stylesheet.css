@@ -1,0 +1,41 @@
+
+
+.restaurant{
+    background-color: blueviolet;
+    padding: 50px;
+    margin-bottom: 30px;
+}
+
+#results{
+    padding: 30px;
+}
+
+
+.restaurantcontainer{
+    background-color: red;
+    float: left;
+    padding: 100px;
+    width: 50%;
+}
+
+    
+.mapsContainer{
+    background-color: blue;
+    padding: 50px;
+    position: fixed;
+    margin-left: 50%;
+    width: 50%;
+    height: 100%;
+
+}
+
+#googleMaps{
+    background-color: pink;
+    padding: 100px;
+    height: 60%;
+    
+}
+
+.resultDetails{
+    background-color: powderblue;
+}
