@@ -1,0 +1,80 @@
+
+
+.restaurant{
+    background-color: blueviolet;
+    padding: 50px;
+    margin-bottom: 30px;
+}
+
+#results{
+    padding: 30px;
+}
+
+
+.restaurantcontainer{
+    background-color: red;
+    float: left;
+    padding: 100px;
+    width: 50%;
+}
+
+    
+.mapsContainer{
+    background-color: blue;
+    padding: 50px;
+    position: fixed;
+    margin-left: 50%;
+    width: 50%;
+    height: 100%;
+
+}
+
+#googleMaps{
+    background-color: pink;
+    padding: 100px;
+    height: 60%;
+    
+}
+
+.resultDetails{
+    background-color: skyblue;
+    width: 50%;
+    padding: 100px;
+    float: left;
+    margin-top: 50px;
+    
+}
+
+
+.mapsContainer2{
+
+    padding: 50px;
+    width: 50%;
+    float: right;
+    
+
+}
+
+#googleMaps2{
+    background-color: pink;
+    padding: 100px;
+    height: 60%;
+    
+}
+
+.header{
+    background-color: slateblue;
+   
+}
+
+.reviews{
+    background-color: springgreen;
+    clear:both;
+    padding: 100px;
+}
+
+footer{
+    background-color: teal;
+    padding: 50px;
+    text-align: center;
+}
