@@ -1,0 +1,17 @@
+.bg{
+    height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: inherit;
+    opacity: .75;
+    z-index: -1;
+}
+.stack{
+    position: absolute;
+    top: 40%;
+    z-index: 1;
+}
+.input-field{
+    width: 200%;
+}
