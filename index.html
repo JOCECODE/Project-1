@@ -4,21 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>L.A. FOODZ</title>
-    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
-
-    <!-- Compressed CSS -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
       integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I="
-      crossorigin="anonymous"
-    />
+      crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" href="style1.css" />
   </head>
   <body>
-    <div class="callout">
-      <h1>L.A. Foodz</h1>
-    </div>
     <section class="bg-container">
+      <div class="callout title">
+        <h1>L.A. Foodz</h1>
+      </div>
       <img
         class="bg"
         src="images/mainPage/labackground.jpg"
@@ -29,15 +26,17 @@
           <div class="grid-x grid-padding-x">
             <div class="cell auto">
               <label>
-                <input class="input-field" type="text" placeholder="Cuisine" />
-                <button type="button" class="button">Search</button>
+                <input class="input-field" type="text" placeholder="Cuisine"/>
               </label>
+            </div>
+            <div class="cell auto">
+              <a type="button" class=" btn button float-right">Search/>
             </div>
           </div>
         </div>
       </form>
+      <footer class="footer">Created by Group 2</footer>
     </section>
-    <footer>Created by Group 2</footer>
     <script src="myscript.js"></script>
     <!-- Compressed JavaScript -->
     <script
