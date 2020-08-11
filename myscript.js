@@ -39,6 +39,6 @@ function toggleDropdown() {
 window.onclick = function (event) {
   console.log("clicked");
   if (!event.target.matches(".filterBtn")) {
-    toggleDropdown();
+    document.querySelector("#filterChoices").classList.remove("show");
   }
 };
