@@ -1,13 +1,17 @@
 $(document).ready(function () {
-  $("#button-addon2").on("click", function (event) {
+  $("#cuisineSearchBtn").on("click", function (event) {
     event.preventDefault();
 
+    var cuisineName = $("#cuisineSearch").val().trim();
+
     var qURL =
-      "https://developers.zomato.com/api/v2.1/search?city_id=281&q=mexican&count=10";
+      "https://developers.zomato.com/api/v2.1/search?city_id=281&q=" +
+      cuisineName +
+      "&count=10";
 
     var apiKey = "2250e0cbe30b423e649121eee80563d0";
 
-    var cuisineName = $("#userInput").val().trim();
+    $("#cuisineSearch").val(""); //CLEARS INPUT FIELD ONCE SEARCH IS CLICKED
 
     console.log(cuisineName);
 
@@ -21,7 +25,7 @@ $(document).ready(function () {
         "user-key": apiKey,
       },
     })
-      // After data comes back from the request
+      // AFTER DATA COMES BACK FROM REQUEST
       .then(function (response) {
         console.log(qURL);
 
@@ -36,9 +40,9 @@ function toggleDropdown() {
   document.querySelector("#filterChoices").classList.toggle("show");
 }
 
-window.onclick = function (event) {
-  console.log("clicked");
-  if (!event.target.matches(".filterBtn")) {
-    toggleDropdown();
-  }
-};
+// window.onclick = function (event) {
+//   console.log("clicked");
+//   if (!event.target.matches(".filterBtn")) {
+//     toggleDropdown();
+//   }
+// };
