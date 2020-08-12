@@ -6,6 +6,8 @@ $(document).ready(function () {
       "https://developers.zomato.com/api/v2.1/search?count=10&city_id=281&q=" +
       cuisineName;
     var apiKey = "2250e0cbe30b423e649121eee80563d0";
+    $("#userInput").val("");
+    localStorage.setItem("cuisineInput", JSON.stringify(cuisineName));
     console.log(cuisineName);
     var settings = {
       url: qURL,
