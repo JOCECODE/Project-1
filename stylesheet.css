@@ -1,80 +1,108 @@
-
-
-.restaurant{
-    background-color: blueviolet;
-    padding: 50px;
-    margin-bottom: 30px;
+.restaurant {
+  background-color: blueviolet;
+  padding: 50px;
+  margin-bottom: 30px;
 }
 
-#results{
-    padding: 30px;
+#results {
+  padding: 30px;
 }
 
-
-.restaurantcontainer{
-    background-color: red;
-    float: left;
-    padding: 100px;
-    width: 50%;
+.restaurantcontainer {
+  background-color: red;
+  float: left;
+  padding: 100px;
+  width: 50%;
 }
 
-    
-.mapsContainer{
-    background-color: blue;
-    padding: 50px;
-    position: fixed;
-    margin-left: 50%;
-    width: 50%;
-    height: 100%;
-
+.mapsContainer {
+  background-color: blue;
+  padding: 50px;
+  position: fixed;
+  margin-left: 50%;
+  width: 50%;
+  height: 100%;
 }
 
-#googleMaps{
-    background-color: pink;
-    padding: 100px;
-    height: 60%;
-    
+#googleMaps {
+  background-color: pink;
+  padding: 100px;
+  height: 60%;
 }
 
-.resultDetails{
-    background-color: skyblue;
-    width: 50%;
-    padding: 100px;
-    float: left;
-    margin-top: 50px;
-    
+.resultDetails {
+  background-color: skyblue;
+  width: 50%;
+  padding: 100px;
+  float: left;
+  margin-top: 50px;
 }
 
-
-.mapsContainer2{
-
-    padding: 50px;
-    width: 50%;
-    float: right;
-    
-
+.mapsContainer2 {
+  padding: 50px;
+  width: 50%;
+  float: right;
 }
 
-#googleMaps2{
-    background-color: pink;
-    padding: 100px;
-    height: 60%;
-    
+#googleMaps2 {
+  background-color: pink;
+  padding: 100px;
+  height: 60%;
 }
 
-.header{
-    background-color: slateblue;
-   
+.header {
+  background-color: slateblue;
 }
 
-.reviews{
-    background-color: springgreen;
-    clear:both;
-    padding: 100px;
+.reviews {
+  background-color: springgreen;
+  clear: both;
+  padding: 100px;
 }
 
-footer{
-    background-color: teal;
-    padding: 50px;
-    text-align: center;
+footer {
+  background-color: teal;
+  padding: 50px;
+  text-align: center;
+}
+
+.filterBtn {
+  background-color: #3498db;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.filterBtn:hover,
+.filterBtn:focus {
+  background-color: #2980b9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 200px;
+  overflow: auto;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 8px 20px;
+  display: block;
+}
+
+.dropdown a:hover {
+  background-color: rgb(182, 176, 176);
+}
+
+.show {
+  display: block;
 }
