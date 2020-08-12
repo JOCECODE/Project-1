@@ -1,3 +1,5 @@
+var map;
+var localStorage = JSON.parse(localStorage.getItem("response"));
 $(document).ready(function () {
   $("#cuisineSearch").on("click", function (event) {
     event.preventDefault();
@@ -7,8 +9,8 @@ $(document).ready(function () {
       cuisineName;
     var apiKey = "2250e0cbe30b423e649121eee80563d0";
     $("#userInput").val("");
-    localStorage.setItem("cuisineInput", JSON.stringify(cuisineName));
-    console.log(cuisineName);
+    // localStorage.setItem("cuisineInput", JSON.stringify(cuisineName));
+    // console.log(cuisineName);
     var settings = {
       url: qURL,
       method: "GET",
@@ -20,13 +22,24 @@ $(document).ready(function () {
     $.ajax(settings)
       // After data comes back from the request
       .then(function (response) {
-        console.log(qURL);
-        console.log(response);
-        for (var i = 0; i < 10; i++) {}
+        localStorage.setItem("response", JSON.stringify(response));
+        window.location.href = "index2.html";
+
+        // var food = response.restaurants[0].restaurant.name;
       });
   });
 });
-
+function renderItems() {
+  var local = JSON.parse(localStorage.getItem("response"));
+  console.log(local.restaurants);
+  for (var i = 0; i < local.restaurants.length; i++) {
+    console.log(local);
+    var food = local.restaurants[i].restaurant.name;
+    $("h4").text(food);
+    console.log(food);
+  }
+}
+renderItems();
 function toggleDropdown() {
   document.querySelector("#filterChoices").classList.toggle("show");
 }
