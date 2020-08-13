@@ -1,4 +1,4 @@
-var map;
+
 var localStorage = JSON.parse(localStorage.getItem("response"));
 $(document).ready(function () {
   $("#cuisineSearch").on("click", function (event) {
@@ -9,8 +9,6 @@ $(document).ready(function () {
       cuisineName;
     var apiKey = "2250e0cbe30b423e649121eee80563d0";
     $("#userInput").val("");
-    // localStorage.setItem("cuisineInput", JSON.stringify(cuisineName));
-    // console.log(cuisineName);
     var settings = {
       url: qURL,
       method: "GET",
@@ -31,26 +29,34 @@ $(document).ready(function () {
 });
 function renderItems() {
   var local = JSON.parse(localStorage.getItem("response"));
-  console.log(local.restaurants);
+ 
   for (var i = 0; i < local.restaurants.length; i++) {
-    console.log(local);
-    var food = local.restaurants[i].restaurant.name;
-    $("h4").text(food);
-    console.log(food);
+    
+    var restName = local.restaurants[i].restaurant.name;
+    var cuisineType = local.restaurants[i].restaurant.cuisines
+    var location = local.restaurants[i].restaurant.address
+    var phoneNumber = local.restaurants[i].restaurant.phone_numbers
+    var reviews = local.restaurants[i].restaurant.user_rating.aggregate_rating
+    $("<h4>", {id: "restName"}).text(restName).appendTo($("#results"));
+    $("<h3>", {id: "cuisineType"}).text(cuisineType).appendTo($("#results"));
+    $("<p>", {id: "location"}).text(location).appendTo($("#results"));
+    $("<p>", {id: "phoneNumber"}).text("Phone Number: " + phoneNumber).appendTo($("#results"));
+    $("<br>").appendTo($("#results"));
+    $("<p>", {id: "reviewResults"}).text(restName + " : " + reviews + "/5").appendTo($(".reviews"));
   }
 }
 renderItems();
+
+// FILTER BUTTON
 function toggleDropdown() {
   document.querySelector("#filterChoices").classList.toggle("show");
 }
 
-// window.onclick = function (event) {
-//   if (!event.target.matches(".filterBtn")) {
-//     document.querySelector("#filterChoices").classList.remove("show");
+// window.onclick = function outsideClick(event) {
+//   if (!event.target.matches(".filterBtn") ) {
+//     document.querySelector("#filterChoices").classList.hide("show");
 //   }
 // };
-
-//var queryURL = "https://www.google.com/maps/search/?api=1&query="+ restaurant + "losangeles"
 var googleapiKey = "AIzaSyCykU04NtL76bdBse3BGOsVY43OWKXqiAY";
 
 function initMap() {
@@ -60,4 +66,5 @@ function initMap() {
   });
 }
 
-function createMap(restaurant) {}
+function createMap(restaurant) {};
+
