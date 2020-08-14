@@ -1,4 +1,3 @@
-
 var localStorage = JSON.parse(localStorage.getItem("response"));
 $(document).ready(function () {
   $("#cuisineSearch").on("click", function (event) {
@@ -29,20 +28,19 @@ $(document).ready(function () {
 });
 function renderItems() {
   var local = JSON.parse(localStorage.getItem("response"));
- 
+
   for (var i = 0; i < local.restaurants.length; i++) {
-    
     var restName = local.restaurants[i].restaurant.name;
-    var cuisineType = local.restaurants[i].restaurant.cuisines
-    var location = local.restaurants[i].restaurant.address
-    var phoneNumber = local.restaurants[i].restaurant.phone_numbers
-    var reviews = local.restaurants[i].restaurant.user_rating.aggregate_rating
-    $("<h4>", {id: "restName"}).text(restName).appendTo($("#results"));
-    $("<h3>", {id: "cuisineType"}).text(cuisineType).appendTo($("#results"));
-    $("<p>", {id: "location"}).text(location).appendTo($("#results"));
-    $("<p>", {id: "phoneNumber"}).text("Phone Number: " + phoneNumber).appendTo($("#results"));
+    var cuisineType = local.restaurants[i].restaurant.cuisines;
+    var location = local.restaurants[i].restaurant.address;
+    var phoneNumber = local.restaurants[i].restaurant.phone_numbers;
+    $("<h4>", { id: "restName" }).text(restName).appendTo($("#results"));
+    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
+    $("<p>", { id: "location" }).text(location).appendTo($("#results"));
+    $("<p>", { id: "phoneNumber" })
+      .text("Phone Number: " + phoneNumber)
+      .appendTo($("#results"));
     $("<br>").appendTo($("#results"));
-    $("<p>", {id: "reviewResults"}).text(restName + " : " + reviews + "/5").appendTo($(".reviews"));
   }
 }
 renderItems();
@@ -66,5 +64,4 @@ function initMap() {
   });
 }
 
-function createMap(restaurant) {};
-
+function createMap(restaurant) {}
