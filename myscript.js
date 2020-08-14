@@ -35,9 +35,9 @@ function renderItems() {
     var cuisineType = local.restaurants[i].restaurant.cuisines;
     var location = local.restaurants[i].restaurant.address;
     var phoneNumber = local.restaurants[i].restaurant.phone_numbers;
-    $("<h4>", { id: "restName" + [i] })
-      .text(restName)
-      .appendTo($("#results"));
+    var divEl = $("<h4>");
+    divEl.attr("data-rest", JSON.stringify("restName" + i));
+    divEl.text(restName).appendTo($("#results"));
     $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
     $("<p>", { id: "location" }).text(location).appendTo($("#results"));
     $("<p>", { id: "phoneNumber" })
@@ -51,13 +51,12 @@ function renderItems() {
   }
   // ONCLICK TO PAGE 3
   $("h4").on("click", function () {
+    var t = $(this).attr("data-rest");
+    var newLocal = JSON.parse(localStorage.getItem(t));
+    console.log(t);
+    $(".restResults").text(newLocal);
+    console.log(newlocal);
     window.location.href = "index3.html";
-    $(".restResults").text(
-      $(this).attr(
-        "data-rest",
-        JSON.parse(local.restaurants[i].restaurant.name)
-      )
-    );
   });
 }
 renderItems();
