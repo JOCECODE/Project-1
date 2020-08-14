@@ -26,6 +26,7 @@ $(document).ready(function () {
       });
   });
 });
+
 function renderItems() {
   var local = JSON.parse(localStorage.getItem("response"));
 
@@ -34,14 +35,30 @@ function renderItems() {
     var cuisineType = local.restaurants[i].restaurant.cuisines;
     var location = local.restaurants[i].restaurant.address;
     var phoneNumber = local.restaurants[i].restaurant.phone_numbers;
-    $("<h4>", { id: "restName" }).text(restName).appendTo($("#results"));
+    $("<h4>", { id: "restName" + [i] })
+      .text(restName)
+      .appendTo($("#results"));
     $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
     $("<p>", { id: "location" }).text(location).appendTo($("#results"));
     $("<p>", { id: "phoneNumber" })
       .text("Phone Number: " + phoneNumber)
       .appendTo($("#results"));
     $("<br>").appendTo($("#results"));
+    $("#restName" + [i]).attr(
+      "data-rest",
+      JSON.stringify(local.restaurants[i])
+    );
   }
+  // ONCLICK TO PAGE 3
+  $("h4").on("click", function () {
+    window.location.href = "index3.html";
+    $(".restResults").text(
+      $(this).attr(
+        "data-rest",
+        JSON.parse(local.restaurants[i].restaurant.name)
+      )
+    );
+  });
 }
 renderItems();
 
