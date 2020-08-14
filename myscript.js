@@ -44,8 +44,8 @@ function renderItems() {
       .text("Phone Number: " + phoneNumber)
       .appendTo($("#results"));
     $("<br>").appendTo($("#results"));
-    $("#restName" + [i]).attr(
-      "data-rest",
+    localStorage.setItem(
+      "restName" + [i],
       JSON.stringify(local.restaurants[i])
     );
   }
