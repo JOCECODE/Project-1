@@ -33,20 +33,31 @@ function renderItems() {
   for (var i = 0; i < local.restaurants.length; i++) {
     var restName = local.restaurants[i].restaurant.name;
     var cuisineType = local.restaurants[i].restaurant.cuisines;
-    var location = local.restaurants[i].restaurant.address;
+    var address = local.restaurants[i].restaurant.location.address;
     var phoneNumber = local.restaurants[i].restaurant.phone_numbers;
+    var times = local.restaurants[i].restaurant.timings
+    var long = local.restaurants[i].restaurant.location.longitude
+    var lat = local.restaurants[i].restaurant.location.latitude
+    var all = new Object();
+    all.restName = restName;
+    all.cuisineType = cuisineType;
+    all.address = address;
+    all.phoneNumber = phoneNumber;
+    all.times = times;
+    all.long = long;
+    all.lat = lat;
+    console.log(all)
     var divEl = $("<h4>");
-    divEl.attr("data-rest", JSON.stringify("restName" + i));
+    divEl.attr("data-rest", JSON.stringify(all));
     divEl.text(restName).appendTo($("#results"));
     $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
-    $("<p>", { id: "location" }).text(location).appendTo($("#results"));
+    $("<p>", { id: "address" }).text(address).appendTo($("#results"));
     $("<p>", { id: "phoneNumber" })
       .text("Phone Number: " + phoneNumber)
       .appendTo($("#results"));
     $("<br>").appendTo($("#results"));
     localStorage.setItem(
-      "restName" + [i],
-      JSON.stringify(local.restaurants[i])
+      "restName" + [i], JSON.stringify(all)
     );
   }
   // ONCLICK TO PAGE 3
@@ -55,8 +66,8 @@ function renderItems() {
     var newLocal = JSON.parse(localStorage.getItem(t));
     console.log(t);
     $(".restResults").text(newLocal);
-    console.log(newlocal);
-    window.location.href = "index3.html";
+    console.log(newLocal);
+    // window.location.href = "index3.html";
   });
 }
 renderItems();
@@ -66,11 +77,14 @@ function toggleDropdown() {
   document.querySelector("#filterChoices").classList.toggle("show");
 }
 
-// window.onclick = function outsideClick(event) {
-//   if (!event.target.matches(".filterBtn") ) {
-//     document.querySelector("#filterChoices").classList.hide("show");
-//   }
-// };
+// DROPDOWN MENU CLOSES ON OUTSIDE CLICK
+$(window).click(function outsideClick(event) {
+  event.stopPropagation();
+  if (!event.target.matches(".filterBtn") ) {
+    document.querySelector("#filterChoices").classList.remove("show");
+  }
+});
+
 var googleapiKey = "AIzaSyCykU04NtL76bdBse3BGOsVY43OWKXqiAY";
 
 function initMap() {
