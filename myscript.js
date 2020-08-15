@@ -21,33 +21,52 @@ $(document).ready(function (event) {
       .then(function (response) {
         localStorage.setItem("response", JSON.stringify(response));
         window.location.href = "index2.html";
-
-        // var food = response.restaurants[0].restaurant.name;
       });
-       // ONCLICK TO PAGE 3
- 
+    // ONCLICK TO PAGE 3
   });
   $("h4").on("click", function () {
     var t = $(this).data();
-    // var name = t.rest.restName;
     var restObj = {
       name: t.rest.restName,
       hours: t.rest.times,
-    }
+      address: t.rest.address,
+      longitude: t.rest.long,
+      latitude: t.rest.lat,
+      number: t.rest.phoneNumber,
+    };
     localStorage.setItem("thisRestObj", JSON.stringify(restObj));
     console.log(restObj);
     window.location.href = "index3.html";
-
- //  var temp = document.querySelector("#restRest")
-  //  temp.textContent = "hoaishdfoijd";
- 
   });
 });
 
-function renderThisRestObj(){
-var thisRestObj = JSON.parse(localStorage.getItem("thisRestObj"));
-$(".restResults").text(thisRestObj.name);
-$(".hours").text(thisRestObj.hours);
+function displayMarker() {
+  var local = JSON.parse(localStorage.getItem("response"));
+  console.log(local);
+  for (var i = 0; i < local.restaurants.length; i++) {
+    var lat = local.restaurants[i].restaurant.location.latitude;
+    var lng = local.restaurants[i].restaurant.location.longitude;
+    var latLng = new google.maps.LatLng(lat, lng);
+    var marker = new google.maps.Marker({
+      position: latLng,
+      map: map,
+    });
+  }
+}
+function initMap() {
+  map = new google.maps.Map(document.getElementById("googleMaps"), {
+    center: { lat: 34.024, lng: -118.496 },
+    zoom: 10,
+  });
+  displayMarker();
+}
+
+function renderThisRestObj() {
+  var thisRestObj = JSON.parse(localStorage.getItem("thisRestObj"));
+  $(".restResults").text(thisRestObj.name);
+  $(".hours").text(thisRestObj.hours);
+  $(".address").text(thisRestObj.address);
+  $(".number").text(thisRestObj.number);
 }
 
 function renderItems() {
@@ -58,9 +77,9 @@ function renderItems() {
     var cuisineType = local.restaurants[i].restaurant.cuisines;
     var address = local.restaurants[i].restaurant.location.address;
     var phoneNumber = local.restaurants[i].restaurant.phone_numbers;
-    var times = local.restaurants[i].restaurant.timings
-    var long = local.restaurants[i].restaurant.location.longitude
-    var lat = local.restaurants[i].restaurant.location.latitude
+    var times = local.restaurants[i].restaurant.timings;
+    var long = local.restaurants[i].restaurant.location.longitude;
+    var lat = local.restaurants[i].restaurant.location.latitude;
     var all = new Object();
     all.restName = restName;
     all.cuisineType = cuisineType;
@@ -69,7 +88,7 @@ function renderItems() {
     all.times = times;
     all.long = long;
     all.lat = lat;
-    console.log(all)
+    console.log(all);
     var divEl = $("<h4>");
     divEl.attr("data-rest", JSON.stringify(all));
     divEl.text(restName).appendTo($("#results"));
@@ -79,11 +98,8 @@ function renderItems() {
       .text("Phone Number: " + phoneNumber)
       .appendTo($("#results"));
     $("<br>").appendTo($("#results"));
-    localStorage.setItem(
-      "restName" + [i], JSON.stringify(all)
-    );
+    localStorage.setItem("restName" + [i], JSON.stringify(all));
   }
- 
 }
 renderItems();
 renderThisRestObj();
@@ -96,18 +112,7 @@ function toggleDropdown() {
 // DROPDOWN MENU CLOSES ON OUTSIDE CLICK
 $(window).click(function outsideClick(event) {
   event.stopPropagation();
-  if (!event.target.matches(".filterBtn") ) {
+  if (!event.target.matches(".filterBtn")) {
     document.querySelector("#filterChoices").classList.remove("show");
   }
 });
-
-var googleapiKey = "AIzaSyCykU04NtL76bdBse3BGOsVY43OWKXqiAY";
-
-function initMap() {
-  map = new google.maps.Map(document.getElementById("googleMaps"), {
-    center: { lat: 34.024, lng: -118.496 },
-    zoom: 10,
-  });
-}
-
-function createMap(restaurant) {}
