@@ -36,8 +36,13 @@ $(document).ready(function (event) {
     };
     localStorage.setItem("thisRestObj", JSON.stringify(restObj));
     console.log(restObj);
+    
+
     window.location.href = "index3.html";
-  });
+   
+    
+    
+  }); 
 });
 
 function displayMarker() {
@@ -59,6 +64,26 @@ function initMap() {
     zoom: 10,
   });
   displayMarker();
+}
+
+function initMap2() {
+  map = new google.maps.Map(document.getElementById("googleMaps2"), {
+    center: { lat: 34.024, lng: -118.496 },
+    zoom: 10,
+  });
+  displayOneMarker();
+}
+
+function displayOneMarker(){
+  var newlocal =JSON.parse(localStorage.getItem("thisRestObj"));
+  var lat = newlocal.latitude;
+  var lng = newlocal.longitude;
+  var latLng = new google.maps.LatLng(lat, lng);
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map,
+  });
+
 }
 
 function renderThisRestObj() {
