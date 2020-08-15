@@ -1,5 +1,5 @@
 var localStorage = JSON.parse(localStorage.getItem("response"));
-$(document).ready(function () {
+$(document).ready(function (event) {
   $("#cuisineSearch").on("click", function (event) {
     event.preventDefault();
     var cuisineName = $("#userInput").val().trim();
@@ -24,8 +24,31 @@ $(document).ready(function () {
 
         // var food = response.restaurants[0].restaurant.name;
       });
+       // ONCLICK TO PAGE 3
+ 
+  });
+  $("h4").on("click", function () {
+    var t = $(this).data();
+    // var name = t.rest.restName;
+    var restObj = {
+      name: t.rest.restName,
+      hours: t.rest.times,
+    }
+    localStorage.setItem("thisRestObj", JSON.stringify(restObj));
+    console.log(restObj);
+    window.location.href = "index3.html";
+
+ //  var temp = document.querySelector("#restRest")
+  //  temp.textContent = "hoaishdfoijd";
+ 
   });
 });
+
+function renderThisRestObj(){
+var thisRestObj = JSON.parse(localStorage.getItem("thisRestObj"));
+$(".restResults").text(thisRestObj.name);
+$(".hours").text(thisRestObj.hours);
+}
 
 function renderItems() {
   var local = JSON.parse(localStorage.getItem("response"));
@@ -60,17 +83,10 @@ function renderItems() {
       "restName" + [i], JSON.stringify(all)
     );
   }
-  // ONCLICK TO PAGE 3
-  $("h4").on("click", function () {
-    var t = $(this).attr("data-rest");
-    var newLocal = JSON.parse(localStorage.getItem(t));
-    console.log(t);
-    $(".restResults").text(newLocal);
-    console.log(newLocal);
-    // window.location.href = "index3.html";
-  });
+ 
 }
 renderItems();
+renderThisRestObj();
 
 // FILTER BUTTON
 function toggleDropdown() {
