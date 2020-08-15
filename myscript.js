@@ -1,6 +1,5 @@
-var map;
 var localStorage = JSON.parse(localStorage.getItem("response"));
-$(document).ready(function () {
+$(document).ready(function (event) {
   $("#cuisineSearch").on("click", function (event) {
     event.preventDefault();
     var cuisineName = $("#userInput").val().trim();
@@ -9,8 +8,6 @@ $(document).ready(function () {
       cuisineName;
     var apiKey = "2250e0cbe30b423e649121eee80563d0";
     $("#userInput").val("");
-    // localStorage.setItem("cuisineInput", JSON.stringify(cuisineName));
-    // console.log(cuisineName);
     var settings = {
       url: qURL,
       method: "GET",
@@ -24,40 +21,98 @@ $(document).ready(function () {
       .then(function (response) {
         localStorage.setItem("response", JSON.stringify(response));
         window.location.href = "index2.html";
-
-        // var food = response.restaurants[0].restaurant.name;
       });
+    // ONCLICK TO PAGE 3
+  });
+  $("h4").on("click", function () {
+    var t = $(this).data();
+    var restObj = {
+      name: t.rest.restName,
+      hours: t.rest.times,
+      address: t.rest.address,
+      longitude: t.rest.long,
+      latitude: t.rest.lat,
+      number: t.rest.phoneNumber,
+    };
+    localStorage.setItem("thisRestObj", JSON.stringify(restObj));
+    console.log(restObj);
+    window.location.href = "index3.html";
   });
 });
-function renderItems() {
+
+function displayMarker() {
   var local = JSON.parse(localStorage.getItem("response"));
-  console.log(local.restaurants);
+  console.log(local);
   for (var i = 0; i < local.restaurants.length; i++) {
-    console.log(local);
-    var food = local.restaurants[i].restaurant.name;
-    $("h4").text(food);
-    console.log(food);
+    var lat = local.restaurants[i].restaurant.location.latitude;
+    var lng = local.restaurants[i].restaurant.location.longitude;
+    var latLng = new google.maps.LatLng(lat, lng);
+    var marker = new google.maps.Marker({
+      position: latLng,
+      map: map,
+    });
   }
 }
-renderItems();
-function toggleDropdown() {
-  document.querySelector("#filterChoices").classList.toggle("show");
-}
-
-// window.onclick = function (event) {
-//   if (!event.target.matches(".filterBtn")) {
-//     document.querySelector("#filterChoices").classList.remove("show");
-//   }
-// };
-
-//var queryURL = "https://www.google.com/maps/search/?api=1&query="+ restaurant + "losangeles"
-var googleapiKey = "AIzaSyCykU04NtL76bdBse3BGOsVY43OWKXqiAY";
-
 function initMap() {
   map = new google.maps.Map(document.getElementById("googleMaps"), {
     center: { lat: 34.024, lng: -118.496 },
     zoom: 10,
   });
+  displayMarker();
 }
 
-function createMap(restaurant) {}
+function renderThisRestObj() {
+  var thisRestObj = JSON.parse(localStorage.getItem("thisRestObj"));
+  $(".restResults").text(thisRestObj.name);
+  $(".hours").text(thisRestObj.hours);
+  $(".address").text(thisRestObj.address);
+  $(".number").text(thisRestObj.number);
+}
+
+function renderItems() {
+  var local = JSON.parse(localStorage.getItem("response"));
+
+  for (var i = 0; i < local.restaurants.length; i++) {
+    var restName = local.restaurants[i].restaurant.name;
+    var cuisineType = local.restaurants[i].restaurant.cuisines;
+    var address = local.restaurants[i].restaurant.location.address;
+    var phoneNumber = local.restaurants[i].restaurant.phone_numbers;
+    var times = local.restaurants[i].restaurant.timings;
+    var long = local.restaurants[i].restaurant.location.longitude;
+    var lat = local.restaurants[i].restaurant.location.latitude;
+    var all = new Object();
+    all.restName = restName;
+    all.cuisineType = cuisineType;
+    all.address = address;
+    all.phoneNumber = phoneNumber;
+    all.times = times;
+    all.long = long;
+    all.lat = lat;
+    console.log(all);
+    var divEl = $("<h4>");
+    divEl.attr("data-rest", JSON.stringify(all));
+    divEl.text(restName).appendTo($("#results"));
+    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
+    $("<p>", { id: "address" }).text(address).appendTo($("#results"));
+    $("<p>", { id: "phoneNumber" })
+      .text("Phone Number: " + phoneNumber)
+      .appendTo($("#results"));
+    $("<br>").appendTo($("#results"));
+    localStorage.setItem("restName" + [i], JSON.stringify(all));
+  }
+}
+renderItems();
+renderThisRestObj();
+
+// FILTER BUTTON
+function toggleDropdown() {
+  document.querySelector("#filterChoices").classList.toggle("show");
+}
+
+// DROPDOWN MENU CLOSES ON OUTSIDE CLICK
+$(window).click(function outsideClick(event) {
+  event.stopPropagation();
+  if (!event.target.matches(".filterBtn")) {
+    document.querySelector("#filterChoices").classList.remove("show");
+  }
+});
