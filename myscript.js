@@ -2,7 +2,122 @@ var localStorage = JSON.parse(localStorage.getItem("response"));
 $(document).ready(function (event) {
   $("#cuisineSearch").on("click", function (event) {
     event.preventDefault();
-    var cuisineName = $("#userInput").val().trim();
+    var cuisineName = $("#userInput").val().trim().toLowerCase();
+    var cuisineType = [
+      "afghan",
+      "african",
+      "american",
+      "argentine",
+      "armenian",
+      "asian",
+      "australian",
+      "austrian",
+      "bbq",
+      "bagels",
+      "bakery",
+      "bar food",
+      "belgian",
+      "beverages",
+      "brazilian",
+      "breakfast",
+      "british",
+      "bubble tea",
+      "burger",
+      "cafe",
+      "cajun",
+      "california",
+      "cambodian",
+      "canadian",
+      "caribbean",
+      "chinese",
+      "coffee and tea",
+      "colombian",
+      "creole",
+      "crepes",
+      "cuban",
+      "deli",
+      "desserts",
+      "dim sum",
+      "diner",
+      "donuts",
+      "drinks only",
+      "eastern european",
+      "ethiopian",
+      "european",
+      "fast food",
+      "filipino",
+      "fish and chips",
+      "french",
+      "frozen yogurt",
+      "fusion",
+      "german",
+      "greek",
+      "grill",
+      "hawaiian",
+      "healthy food",
+      "ice cream",
+      "indian",
+      "indonesian",
+      "international",
+      "iranian",
+      "irish",
+      "israeli",
+      "italian",
+      "jamaican",
+      "japanese",
+      "jewish",
+      "juices",
+      "korean",
+      "latin american",
+      "lebanese",
+      "malaysian",
+      "mediterranean",
+      "mexican",
+      "middle eastern",
+      "moroccan",
+      "new american",
+      "new mexican",
+      "pacific northwest",
+      "pakistani",
+      "peruvian",
+      "pizza",
+      "po'boys",
+      "portuguese",
+      "pub food",
+      "puerto rican",
+      "ramen",
+      "roast chicken",
+      "russian",
+      "salad",
+      "salvadorean",
+      "sandwich",
+      "scandinavian",
+      "seafood",
+      "soul food",
+      "south american",
+      "southern",
+      "southwestern",
+      "spanish",
+      "sri lankan",
+      "steak",
+      "sushi",
+      "taco",
+      "taiwanese",
+      "tapas",
+      "tea",
+      "teriyaki",
+      "tex-mex",
+      "thai",
+      "turkish",
+      "vegetarian",
+      "venezuelan",
+      "vietnamese",
+    ];
+    if (cuisineType.indexOf(cuisineName) === -1) {
+      alert("Try another cuisine!");
+      preventDefault();
+    } else {
+    }
     var qURL =
       "https://developers.zomato.com/api/v2.1/search?count=10&city_id=281&q=" +
       cuisineName;
@@ -36,13 +151,9 @@ $(document).ready(function (event) {
     };
     localStorage.setItem("thisRestObj", JSON.stringify(restObj));
     console.log(restObj);
-    
 
     window.location.href = "index3.html";
-   
-    
-    
-  }); 
+  });
 });
 
 function displayMarker() {
@@ -60,7 +171,7 @@ function displayMarker() {
 }
 function initMap() {
   map = new google.maps.Map(document.getElementById("googleMaps"), {
-    center: { lat: 34.024, lng: -118.496 },
+    center: { lat: 34.052, lng: -118.243 },
     zoom: 10,
   });
   displayMarker();
@@ -68,14 +179,14 @@ function initMap() {
 
 function initMap2() {
   map = new google.maps.Map(document.getElementById("googleMaps2"), {
-    center: { lat: 34.024, lng: -118.496 },
+    center: { lat: 34.052, lng: -118.243 },
     zoom: 10,
   });
   displayOneMarker();
 }
 
-function displayOneMarker(){
-  var newlocal =JSON.parse(localStorage.getItem("thisRestObj"));
+function displayOneMarker() {
+  var newlocal = JSON.parse(localStorage.getItem("thisRestObj"));
   var lat = newlocal.latitude;
   var lng = newlocal.longitude;
   var latLng = new google.maps.LatLng(lat, lng);
@@ -83,7 +194,6 @@ function displayOneMarker(){
     position: latLng,
     map: map,
   });
-
 }
 
 function renderThisRestObj() {
