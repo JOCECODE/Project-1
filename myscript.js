@@ -4,9 +4,19 @@ $(document).ready(function (event) {
     event.preventDefault();
     var cuisineName = $("#userInput").val().trim();
     var qURL =
-      "https://developers.zomato.com/api/v2.1/search?count=10&city_id=281&q=" +
+      "https://developers.zomato.com/api/v2.1/search?count=20&city_id=281&q=" +
       cuisineName;
-    var apiKey = "2250e0cbe30b423e649121eee80563d0";
+    var qURL2 =
+      "https://developers.zomato.com/api/v2.1/search?count=20&start=20&city_id=281&q=" +
+      cuisineName;
+    var qURL3=
+      "https://developers.zomato.com/api/v2.1/search?count=20&start=40&city_id=281&q=" +
+      cuisineName;
+    var qURL4 =
+      "https://developers.zomato.com/api/v2.1/search?count=20&start=60&city_id=281&q=" +
+      cuisineName;
+    
+      var apiKey = "2250e0cbe30b423e649121eee80563d0";
     $("#userInput").val("");
     var settings = {
       url: qURL,
@@ -16,12 +26,56 @@ $(document).ready(function (event) {
         "user-key": apiKey,
       },
     };
-    $.ajax(settings)
+    var settings2 = {
+      url: qURL2,
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "user-key": apiKey,
+      },
+    };
+    var settings3 = {
+      url: qURL3,
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "user-key": apiKey,
+      },
+    };
+    var settings4 = {
+      url: qURL4,
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "user-key": apiKey,
+      },
+    };
+    var a1 = $.ajax(settings)
       // After data comes back from the request
       .then(function (response) {
         localStorage.setItem("response", JSON.stringify(response));
+        localStorage.setItem("cuisine", JSON.stringify(cuisineName));
         window.location.href = "index2.html";
       });
+    var a2 = $.ajax(settings2)
+      // After data comes back from the request
+      .then(function (response) {
+        localStorage.setItem("response2", JSON.stringify(response));
+      });
+    var a3 = $.ajax(settings3)
+      // After data comes back from the request
+      .then(function (response) {
+        localStorage.setItem("response3", JSON.stringify(response));
+      });
+    var a4 = $.ajax(settings4)
+      // After data comes back from the request
+      .then(function (response) {
+        localStorage.setItem("response4", JSON.stringify(response));
+      });
+
+    $.when(a1, a2, a3, a4).done(function(response) {
+      console.log(response)
+    });
     // ONCLICK TO PAGE 3
   });
   $("h4").on("click", function () {
@@ -48,7 +102,7 @@ $(document).ready(function (event) {
 function displayMarker() {
   var local = JSON.parse(localStorage.getItem("response"));
   console.log(local);
-  for (var i = 0; i < local.restaurants.length; i++) {
+  for (var i = 0; i < 10; i++) {
     var lat = local.restaurants[i].restaurant.location.latitude;
     var lng = local.restaurants[i].restaurant.location.longitude;
     var latLng = new google.maps.LatLng(lat, lng);
@@ -60,7 +114,7 @@ function displayMarker() {
 }
 function initMap() {
   map = new google.maps.Map(document.getElementById("googleMaps"), {
-    center: { lat: 34.024, lng: -118.496 },
+    center: { lat: 34.052, lng: -118.243 },
     zoom: 10,
   });
   displayMarker();
@@ -68,7 +122,7 @@ function initMap() {
 
 function initMap2() {
   map = new google.maps.Map(document.getElementById("googleMaps2"), {
-    center: { lat: 34.024, lng: -118.496 },
+    center: { lat: 34.052, lng: -118.243 },
     zoom: 10,
   });
   displayOneMarker();
@@ -97,7 +151,7 @@ function renderThisRestObj() {
 function renderItems() {
   var local = JSON.parse(localStorage.getItem("response"));
 
-  for (var i = 0; i < local.restaurants.length; i++) {
+  for (var i = 0; i < 10; i++) {
     var restName = local.restaurants[i].restaurant.name;
     var cuisineType = local.restaurants[i].restaurant.cuisines;
     var address = local.restaurants[i].restaurant.location.address;
@@ -125,9 +179,273 @@ function renderItems() {
     $("<br>").appendTo($("#results"));
     localStorage.setItem("restName" + [i], JSON.stringify(all));
   }
+  for (var i = 10; i < 20; i++) {
+    var restName = local.restaurants[i].restaurant.name;
+    var cuisineType = local.restaurants[i].restaurant.cuisines;
+    var address = local.restaurants[i].restaurant.location.address;
+    var phoneNumber = local.restaurants[i].restaurant.phone_numbers;
+    var times = local.restaurants[i].restaurant.timings;
+    var long = local.restaurants[i].restaurant.location.longitude;
+    var lat = local.restaurants[i].restaurant.location.latitude;
+    var all = new Object();
+    all.restName = restName;
+    all.cuisineType = cuisineType;
+    all.address = address;
+    all.phoneNumber = phoneNumber;
+    all.times = times;
+    all.long = long;
+    all.lat = lat;
+    console.log(all);
+    var divEl = $("<h4>");
+    divEl.attr("data-rest", JSON.stringify(all));
+    $("#results2").addClass("hide")
+    divEl.text(restName).appendTo($("#results2"));
+    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results2"));
+    $("<p>", { id: "address" }).text(address).appendTo($("#results2"));
+    $("<p>", { id: "phoneNumber" })
+      .text("Phone Number: " + phoneNumber)
+      .appendTo($("#results2"));
+    $("<br>").appendTo($("#results2"));
+    localStorage.setItem("restName" + [i], JSON.stringify(all));
+  }
 }
 renderItems();
 renderThisRestObj();
+
+// Pagination clicks
+$("#two").on("click", function () {
+  $("#one").removeClass("current")
+  $("#two").addClass("current")
+  $("#results").addClass("hide")
+  $("#results2").removeClass("hide")
+})
+
+$("#three").on("click", function() {
+  $("#two").removeClass("current");
+  $("#three").addClass("current");
+  $("#results, #results2").empty();
+
+  var local = JSON.parse(localStorage.getItem("response2"));
+
+  for (var i = 0; i < 10; i++) {
+    var restName = local.restaurants[i].restaurant.name;
+    var cuisineType = local.restaurants[i].restaurant.cuisines;
+    var address = local.restaurants[i].restaurant.location.address;
+    var phoneNumber = local.restaurants[i].restaurant.phone_numbers;
+    var times = local.restaurants[i].restaurant.timings;
+    var long = local.restaurants[i].restaurant.location.longitude;
+    var lat = local.restaurants[i].restaurant.location.latitude;
+    var all = new Object();
+    all.restName = restName;
+    all.cuisineType = cuisineType;
+    all.address = address;
+    all.phoneNumber = phoneNumber;
+    all.times = times;
+    all.long = long;
+    all.lat = lat;
+    console.log(all);
+    var divEl = $("<h4>");
+    divEl.attr("data-rest", JSON.stringify(all));
+    $("#results").removeClass("hide")
+    divEl.text(restName).appendTo($("#results"));
+    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
+    $("<p>", { id: "address" }).text(address).appendTo($("#results"));
+    $("<p>", { id: "phoneNumber" })
+      .text("Phone Number: " + phoneNumber)
+      .appendTo($("#results"));
+    $("<br>").appendTo($("#results"));
+    localStorage.setItem("restName" + [i], JSON.stringify(all));
+  }
+  for (var i = 10; i < 20; i++) {
+    var restName = local.restaurants[i].restaurant.name;
+    var cuisineType = local.restaurants[i].restaurant.cuisines;
+    var address = local.restaurants[i].restaurant.location.address;
+    var phoneNumber = local.restaurants[i].restaurant.phone_numbers;
+    var times = local.restaurants[i].restaurant.timings;
+    var long = local.restaurants[i].restaurant.location.longitude;
+    var lat = local.restaurants[i].restaurant.location.latitude;
+    var all = new Object();
+    all.restName = restName;
+    all.cuisineType = cuisineType;
+    all.address = address;
+    all.phoneNumber = phoneNumber;
+    all.times = times;
+    all.long = long;
+    all.lat = lat;
+    console.log(all);
+    var divEl = $("<h4>");
+    divEl.attr("data-rest", JSON.stringify(all));
+    $("#results2").addClass("hide")
+    divEl.text(restName).appendTo($("#results2"));
+    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results2"));
+    $("<p>", { id: "address" }).text(address).appendTo($("#results2"));
+    $("<p>", { id: "phoneNumber" })
+      .text("Phone Number: " + phoneNumber)
+      .appendTo($("#results2"));
+    $("<br>").appendTo($("#results2"));
+    localStorage.setItem("restName" + [i], JSON.stringify(all));
+  }
+
+})
+
+$("#four").on("click", function () {
+  $("#three").removeClass("current")
+  $("#four").addClass("current")
+  $("#results").addClass("hide")
+  $("#results2").removeClass("hide")
+})
+
+$("#five").on("click", function() {
+  $("#four").removeClass("current");
+  $("#five").addClass("current");
+  $("#results, #results2").empty();
+
+  var local = JSON.parse(localStorage.getItem("response3"));
+
+  for (var i = 0; i < 10; i++) {
+    var restName = local.restaurants[i].restaurant.name;
+    var cuisineType = local.restaurants[i].restaurant.cuisines;
+    var address = local.restaurants[i].restaurant.location.address;
+    var phoneNumber = local.restaurants[i].restaurant.phone_numbers;
+    var times = local.restaurants[i].restaurant.timings;
+    var long = local.restaurants[i].restaurant.location.longitude;
+    var lat = local.restaurants[i].restaurant.location.latitude;
+    var all = new Object();
+    all.restName = restName;
+    all.cuisineType = cuisineType;
+    all.address = address;
+    all.phoneNumber = phoneNumber;
+    all.times = times;
+    all.long = long;
+    all.lat = lat;
+    console.log(all);
+    var divEl = $("<h4>");
+    divEl.attr("data-rest", JSON.stringify(all));
+    $("#results").removeClass("hide")
+    divEl.text(restName).appendTo($("#results"));
+    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
+    $("<p>", { id: "address" }).text(address).appendTo($("#results"));
+    $("<p>", { id: "phoneNumber" })
+      .text("Phone Number: " + phoneNumber)
+      .appendTo($("#results"));
+    $("<br>").appendTo($("#results"));
+    localStorage.setItem("restName" + [i], JSON.stringify(all));
+  }
+  for (var i = 10; i < 20; i++) {
+    var restName = local.restaurants[i].restaurant.name;
+    var cuisineType = local.restaurants[i].restaurant.cuisines;
+    var address = local.restaurants[i].restaurant.location.address;
+    var phoneNumber = local.restaurants[i].restaurant.phone_numbers;
+    var times = local.restaurants[i].restaurant.timings;
+    var long = local.restaurants[i].restaurant.location.longitude;
+    var lat = local.restaurants[i].restaurant.location.latitude;
+    var all = new Object();
+    all.restName = restName;
+    all.cuisineType = cuisineType;
+    all.address = address;
+    all.phoneNumber = phoneNumber;
+    all.times = times;
+    all.long = long;
+    all.lat = lat;
+    console.log(all);
+    var divEl = $("<h4>");
+    divEl.attr("data-rest", JSON.stringify(all));
+    $("#results2").addClass("hide")
+    divEl.text(restName).appendTo($("#results2"));
+    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results2"));
+    $("<p>", { id: "address" }).text(address).appendTo($("#results2"));
+    $("<p>", { id: "phoneNumber" })
+      .text("Phone Number: " + phoneNumber)
+      .appendTo($("#results2"));
+    $("<br>").appendTo($("#results2"));
+    localStorage.setItem("restName" + [i], JSON.stringify(all));
+  }
+
+})
+
+$("#six").on("click", function () {
+  $("#five").removeClass("current")
+  $("#six").addClass("current")
+  $("#results").addClass("hide")
+  $("#results2").removeClass("hide")
+})
+
+$("#seven").on("click", function() {
+  $("#six").removeClass("current");
+  $("#seven").addClass("current");
+  $("#results, #results2").empty();
+
+  var local = JSON.parse(localStorage.getItem("response4"));
+
+  for (var i = 0; i < 10; i++) {
+    var restName = local.restaurants[i].restaurant.name;
+    var cuisineType = local.restaurants[i].restaurant.cuisines;
+    var address = local.restaurants[i].restaurant.location.address;
+    var phoneNumber = local.restaurants[i].restaurant.phone_numbers;
+    var times = local.restaurants[i].restaurant.timings;
+    var long = local.restaurants[i].restaurant.location.longitude;
+    var lat = local.restaurants[i].restaurant.location.latitude;
+    var all = new Object();
+    all.restName = restName;
+    all.cuisineType = cuisineType;
+    all.address = address;
+    all.phoneNumber = phoneNumber;
+    all.times = times;
+    all.long = long;
+    all.lat = lat;
+    console.log(all);
+    var divEl = $("<h4>");
+    divEl.attr("data-rest", JSON.stringify(all));
+    $("#results").removeClass("hide")
+    divEl.text(restName).appendTo($("#results"));
+    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
+    $("<p>", { id: "address" }).text(address).appendTo($("#results"));
+    $("<p>", { id: "phoneNumber" })
+      .text("Phone Number: " + phoneNumber)
+      .appendTo($("#results"));
+    $("<br>").appendTo($("#results"));
+    localStorage.setItem("restName" + [i], JSON.stringify(all));
+  }
+  for (var i = 10; i < 20; i++) {
+    var restName = local.restaurants[i].restaurant.name;
+    var cuisineType = local.restaurants[i].restaurant.cuisines;
+    var address = local.restaurants[i].restaurant.location.address;
+    var phoneNumber = local.restaurants[i].restaurant.phone_numbers;
+    var times = local.restaurants[i].restaurant.timings;
+    var long = local.restaurants[i].restaurant.location.longitude;
+    var lat = local.restaurants[i].restaurant.location.latitude;
+    var all = new Object();
+    all.restName = restName;
+    all.cuisineType = cuisineType;
+    all.address = address;
+    all.phoneNumber = phoneNumber;
+    all.times = times;
+    all.long = long;
+    all.lat = lat;
+    console.log(all);
+    var divEl = $("<h4>");
+    divEl.attr("data-rest", JSON.stringify(all));
+    $("#results2").addClass("hide")
+    divEl.text(restName).appendTo($("#results2"));
+    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results2"));
+    $("<p>", { id: "address" }).text(address).appendTo($("#results2"));
+    $("<p>", { id: "phoneNumber" })
+      .text("Phone Number: " + phoneNumber)
+      .appendTo($("#results2"));
+    $("<br>").appendTo($("#results2"));
+    localStorage.setItem("restName" + [i], JSON.stringify(all));
+  }
+
+})
+
+$("#eight").on("click", function () {
+  $("#seven").removeClass("current")
+  $("#eight").addClass("current")
+  $("#results").addClass("hide")
+  $("#results2").removeClass("hide")
+})
+
+
 
 // FILTER BUTTON
 function toggleDropdown() {
