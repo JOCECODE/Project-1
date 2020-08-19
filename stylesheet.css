@@ -1,7 +1,48 @@
-.restaurant {
-  background-color: blueviolet;
-  padding: 50px;
-  margin-bottom: 30px;
+
+body{
+  background-color: #000000 !important;
+}
+
+.firstpage{
+
+  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(labackground.jpg);
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  color: white;
+  padding:200px;
+  
+ 
+
+  
+
+}
+
+.header {
+  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(labackground.jpg);
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  color: white;
+ 
+}
+
+.everything{
+  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(labackground.jpg);
+  background-position:center;
+  background-size: cover;
+  display:flex;
+  font-family: sans-serif;
+  color: white;
+  width: 100%;
+  padding:100px;
+
 }
 
 #results {
@@ -9,100 +50,222 @@
 }
 
 .restaurantcontainer {
-  background-color: red;
+  font-family: 'Libre Baskerville', serif;
+  color: white;
   float: left;
-  padding: 100px;
+  padding: 70px;
   width: 50%;
+  border-style: double;
+  border-color: lightgray;
 }
 
+.title{
+  font-family: 'Libre Baskerville', serif;
+  font-size: 25px;
+  text-decoration: underline;
+}
 .mapsContainer {
-  background-color: blue;
-  padding: 50px;
-  position: fixed;
-  margin-left: 50%;
+  position: sticky; top:100px;
+  margin-left: 10%;
   width: 50%;
-  height: 100%;
+  height:500px;
+  
+
+}
+#userInput{
+  clear:both;
+}
+
+h1{
+  margin-right: 15px;
+}
+
+.stack{
+  margin-top: 15px;
+
 }
 
 #googleMaps {
-  background-color: pink;
   padding: 100px;
-  height: 60%;
+  height: 90%;
+
 }
 
-.resultDetails {
-  background-color: skyblue;
-  width: 50%;
-  padding: 100px;
-  float: left;
-  margin-top: 50px;
+#cuisineType{
+  font-size: 20px;
 }
 
 .mapsContainer2 {
-  padding: 50px;
-  width: 50%;
+  width: 45%;
+  padding:50px;
   float: right;
+  margin-left: 100px;
 }
 
 #googleMaps2 {
-  background-color: pink;
-  padding: 100px;
-  height: 60%;
+  height:500px;
 }
 
-.header {
-  background-color: slateblue;
-}
 
-.reviews {
-  background-color: springgreen;
-  clear: both;
-  padding: 100px;
-}
-
-footer {
-  background-color: teal;
+.resultDetails{
+  font-family: 'Libre Baskerville', serif;
+  color: white;
+  border-style: double;
+  border-color: lightgray;
+  width: 40%;
+  height: 400px;
   padding: 50px;
+  margin-top: 100px;
+  margin-left: 50px;
+  
+  
+  
+}
+.picture{
+  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(labackground.jpg);
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  padding-bottom: 150px;
+}
+.header {
+  background-color: black}
+
+
+.example_e {
+border: none;
+color:  white !important;
+font-weight: 200;
+padding: 20px;
+text-transform: uppercase;
+border-radius: 6px;
+display: inline-block;
+transition: all 0.3s ease 0s;
+}
+
+.example_e:hover {
+  color:grey !important;
+  font-weight: 700 !important;
+  letter-spacing: 3px;
+  background: none;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.3s ease 0s;
+  }
+
+.fa-home{
+  color: gray;
+  
+}
+
+
+
+h1{
+  font-family: 'Libre Baskerville', serif;
+  font-size:50px;
+}
+
+
+
+.phead{
+  font-size: 15px;
+  font-weight: bold;
   text-align: center;
 }
 
-.filterBtn {
-  background-color: #3498db;
+
+.name{
+  font-size: 15px;
+  color: grey;
+}
+
+.created{
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.pictures{
+  padding-top: 30px;
+}
+
+.emails2 {
+  width: 50%;
+  float: left;
   color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
+  padding:75px;
+  text-align: center;
+  font-family: 'Libre Baskerville', serif;
+  border-right: white solid ;
+  font-size: 15px;
 }
 
-.filterBtn:hover,
-.filterBtn:focus {
-  background-color: #2980b9;
+
+.about2 {
+  width: 50%;
+  float:right;
+  color: white;
+  padding:75px;
+  text-align: center;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 15px;
+ 
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
+
+
+
+.emails3{
+ width: 50%;
+  float: left;
+  color: white;
+  text-align: center;
+  font-family: 'Libre Baskerville', serif;
+  border-right: white solid ;
+  font-size: 15px;
+
+  
 }
 
-.dropdown-content {
-  display: none;
+.about3{
+  width:50%;
+ float:right;
+  color: white;
+  text-align: center;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 15px;
+  
+}
+
+.emails1{
+  width: 50%;
+  float: left;
+  color: white;
+  text-align: center;
+  font-family: 'Libre Baskerville', serif;
+  border-right: white solid ;
+  font-size: 15px;
+  
+
+}
+
+.about1{
+  width:50%;
+  float:right;
+   color: white;
+   text-align: center;
+   font-family: 'Libre Baskerville', serif;
+   font-size: 15px;
+  
+   
+
+}
+
+.contacts1{
+ 
+  padding:30px;
   position: absolute;
-  background-color: #ffffff;
-  min-width: 200px;
-  overflow: auto;
-}
+  clear:both;
+  float:bottom;
+  width:100%;
 
-.dropdown-content a {
-  color: black;
-  padding: 8px 20px;
-  display: block;
-}
-
-.dropdown a:hover {
-  background-color: rgb(182, 176, 176);
-}
-
-.show {
-  display: block;
 }
