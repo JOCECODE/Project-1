@@ -1,5 +1,7 @@
+// GLOBAL VARIABLES
 var localStorage = JSON.parse(localStorage.getItem("response"));
 
+// AJAX CALL WHEN DOCUMENT IS READY
 $(document).ready(function (event) {
   $("#cuisineSearch").on("click", function (event) {
     event.preventDefault();
@@ -18,14 +20,16 @@ $(document).ready(function (event) {
       },
     };
     $.ajax(settings)
-      // After data comes back from the request
+
+      // FUNCTION AFTER DATA REQUEST SAVE INTO LOCAL STORAGE
       .then(function (response) {
         localStorage.setItem("response", JSON.stringify(response));
         window.location.href = "index2.html";
       });
-    // ONCLICK TO PAGE 3
   });
-  $("h4").on("click", function () {
+
+  // ON CLICK EVENT LISTENER FOR H4 ELEMENT ON INDEX2.HTML
+  $("h4, .phoneNumber, .address").on("click", function () {
     var t = $(this).data();
     var restObj = {
       name: t.rest.restName,
@@ -34,19 +38,15 @@ $(document).ready(function (event) {
       longitude: t.rest.long,
       latitude: t.rest.lat,
       number: t.rest.phoneNumber,
-
     };
     localStorage.setItem("thisRestObj", JSON.stringify(restObj));
     console.log(restObj);
-    
 
     window.location.href = "index3.html";
-   
-    
-    
-  }); 
+  });
 });
 
+// DISPLAY MARKER ON GOOGLE MAPS 1 ON INDEX2.HTML
 function displayMarker() {
   var local = JSON.parse(localStorage.getItem("response"));
   console.log(local);
@@ -60,18 +60,19 @@ function displayMarker() {
     });
   }
 }
+
+// INIT GOOGLE MAPS 1 ON INDEX 2
 function initMap() {
   map = new google.maps.Map(document.getElementById("googleMaps"), {
-    center: { lat: 34.052, lng: -118.243},
+    center: { lat: 34.052, lng: -118.243 },
     zoom: 11,
   });
   displayMarker();
 }
 
-
-
-function displayOneMarker(){
-  var newlocal =JSON.parse(localStorage.getItem("thisRestObj"));
+// DISPLAY MARKER ON GOOGLE MAPS 2 ON INDEX 3
+function displayOneMarker() {
+  var newlocal = JSON.parse(localStorage.getItem("thisRestObj"));
   var lat = newlocal.latitude;
   var lng = newlocal.longitude;
   var latLng = new google.maps.LatLng(lat, lng);
@@ -79,9 +80,9 @@ function displayOneMarker(){
     position: latLng,
     map: map,
   });
-
 }
 
+// INIT GOOGLE MAPS ON INDEX 3
 function initMap2() {
   map = new google.maps.Map(document.getElementById("googleMaps2"), {
     center: { lat: 34.052, lng: -118.243 },
@@ -90,6 +91,7 @@ function initMap2() {
   displayOneMarker();
 }
 
+// RENDER "THIS" OBJECT ON INDEX 3
 function renderThisRestObj() {
   var thisRestObj = JSON.parse(localStorage.getItem("thisRestObj"));
   $(".restResults").text(thisRestObj.name);
@@ -98,9 +100,9 @@ function renderThisRestObj() {
   $(".number").text(thisRestObj.number);
 }
 
+// FUNCTION SAVE AND RENDER ITEMS AND DISPLAY ON PAGE
 function renderItems() {
   var local = JSON.parse(localStorage.getItem("response"));
-
   for (var i = 0; i < local.restaurants.length; i++) {
     var restName = local.restaurants[i].restaurant.name;
     var cuisineType = local.restaurants[i].restaurant.cuisines;
@@ -121,26 +123,15 @@ function renderItems() {
     var divEl = $("<h4>");
     divEl.attr("data-rest", JSON.stringify(all));
     divEl.text(restName).appendTo($("#results"));
-    $("<p>", { id: "address" }).text(address).appendTo($("#results"));
-    $("<p>", { id: "phoneNumber" })
-      .text (phoneNumber)
+    $("<p>", { class: "address" }).text(address).appendTo($("#results"));
+    $("<p>", { class: "phoneNumber" })
+      .text(phoneNumber)
       .appendTo($("#results"));
+    $(".address").attr("data-rest", JSON.stringify(all));
+    $(".phoneNumber").attr("data-rest", JSON.stringify(all));
     $("<br>").appendTo($("#results"));
     localStorage.setItem("restName" + [i], JSON.stringify(all));
   }
 }
 renderItems();
 renderThisRestObj();
-
-// FILTER BUTTON
-function toggleDropdown() {
-  document.querySelector("#filterChoices").classList.toggle("show");
-}
-
-// DROPDOWN MENU CLOSES ON OUTSIDE CLICK
-$(window).click(function outsideClick(event) {
-  event.stopPropagation();
-  if (!event.target.matches(".filterBtn")) {
-    document.querySelector("#filterChoices").classList.remove("show");
-  }
-});
