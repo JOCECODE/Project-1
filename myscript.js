@@ -179,6 +179,25 @@ function renderItems() {
     $("<br>").appendTo($("#results"));
     localStorage.setItem("restName" + [i], JSON.stringify(all));
   }
+}
+renderItems();
+renderThisRestObj();
+
+// Pagination clicks
+$("#one").on("click", function() {
+  $("#one").addClass("current")
+  $("#results").empty()
+  renderItems();
+})
+
+
+$("#two").on("click", function () {
+  $("#one").removeClass("current")
+  $("#two").addClass("current")
+  $("#results").empty()
+
+  var local = JSON.parse(localStorage.getItem("response"));
+
   for (var i = 10; i < 20; i++) {
     var restName = local.restaurants[i].restaurant.name;
     var cuisineType = local.restaurants[i].restaurant.cuisines;
@@ -198,32 +217,21 @@ function renderItems() {
     console.log(all);
     var divEl = $("<h4>");
     divEl.attr("data-rest", JSON.stringify(all));
-    $("#results2").addClass("hide")
-    divEl.text(restName).appendTo($("#results2"));
-    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results2"));
-    $("<p>", { id: "address" }).text(address).appendTo($("#results2"));
+    divEl.text(restName).appendTo($("#results"));
+    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
+    $("<p>", { id: "address" }).text(address).appendTo($("#results"));
     $("<p>", { id: "phoneNumber" })
       .text("Phone Number: " + phoneNumber)
-      .appendTo($("#results2"));
-    $("<br>").appendTo($("#results2"));
+      .appendTo($("#results"));
+    $("<br>").appendTo($("#results"));
     localStorage.setItem("restName" + [i], JSON.stringify(all));
   }
-}
-renderItems();
-renderThisRestObj();
-
-// Pagination clicks
-$("#two").on("click", function () {
-  $("#one").removeClass("current")
-  $("#two").addClass("current")
-  $("#results").addClass("hide")
-  $("#results2").removeClass("hide")
 })
 
 $("#three").on("click", function() {
   $("#two").removeClass("current");
   $("#three").addClass("current");
-  $("#results, #results2").empty();
+  $("#results").empty();
 
   var local = JSON.parse(localStorage.getItem("response2"));
 
@@ -246,7 +254,6 @@ $("#three").on("click", function() {
     console.log(all);
     var divEl = $("<h4>");
     divEl.attr("data-rest", JSON.stringify(all));
-    $("#results").removeClass("hide")
     divEl.text(restName).appendTo($("#results"));
     $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
     $("<p>", { id: "address" }).text(address).appendTo($("#results"));
@@ -256,6 +263,15 @@ $("#three").on("click", function() {
     $("<br>").appendTo($("#results"));
     localStorage.setItem("restName" + [i], JSON.stringify(all));
   }
+})
+
+$("#four").on("click", function () {
+  $("#three").removeClass("current")
+  $("#four").addClass("current")
+  $("#results").empty()
+
+  var local = JSON.parse(localStorage.getItem("response2"));
+
   for (var i = 10; i < 20; i++) {
     var restName = local.restaurants[i].restaurant.name;
     var cuisineType = local.restaurants[i].restaurant.cuisines;
@@ -275,30 +291,21 @@ $("#three").on("click", function() {
     console.log(all);
     var divEl = $("<h4>");
     divEl.attr("data-rest", JSON.stringify(all));
-    $("#results2").addClass("hide")
-    divEl.text(restName).appendTo($("#results2"));
-    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results2"));
-    $("<p>", { id: "address" }).text(address).appendTo($("#results2"));
+    divEl.text(restName).appendTo($("#results"));
+    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
+    $("<p>", { id: "address" }).text(address).appendTo($("#results"));
     $("<p>", { id: "phoneNumber" })
       .text("Phone Number: " + phoneNumber)
-      .appendTo($("#results2"));
-    $("<br>").appendTo($("#results2"));
+      .appendTo($("#results"));
+    $("<br>").appendTo($("#results"));
     localStorage.setItem("restName" + [i], JSON.stringify(all));
   }
-
-})
-
-$("#four").on("click", function () {
-  $("#three").removeClass("current")
-  $("#four").addClass("current")
-  $("#results").addClass("hide")
-  $("#results2").removeClass("hide")
 })
 
 $("#five").on("click", function() {
   $("#four").removeClass("current");
   $("#five").addClass("current");
-  $("#results, #results2").empty();
+  $("#results").empty();
 
   var local = JSON.parse(localStorage.getItem("response3"));
 
@@ -321,7 +328,6 @@ $("#five").on("click", function() {
     console.log(all);
     var divEl = $("<h4>");
     divEl.attr("data-rest", JSON.stringify(all));
-    $("#results").removeClass("hide")
     divEl.text(restName).appendTo($("#results"));
     $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
     $("<p>", { id: "address" }).text(address).appendTo($("#results"));
@@ -331,6 +337,15 @@ $("#five").on("click", function() {
     $("<br>").appendTo($("#results"));
     localStorage.setItem("restName" + [i], JSON.stringify(all));
   }
+})
+
+$("#six").on("click", function () {
+  $("#five").removeClass("current")
+  $("#six").addClass("current")
+  $("#results").empty()
+
+  var local = JSON.parse(localStorage.getItem("response3"));
+
   for (var i = 10; i < 20; i++) {
     var restName = local.restaurants[i].restaurant.name;
     var cuisineType = local.restaurants[i].restaurant.cuisines;
@@ -350,30 +365,21 @@ $("#five").on("click", function() {
     console.log(all);
     var divEl = $("<h4>");
     divEl.attr("data-rest", JSON.stringify(all));
-    $("#results2").addClass("hide")
-    divEl.text(restName).appendTo($("#results2"));
-    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results2"));
-    $("<p>", { id: "address" }).text(address).appendTo($("#results2"));
+    divEl.text(restName).appendTo($("#results"));
+    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
+    $("<p>", { id: "address" }).text(address).appendTo($("#results"));
     $("<p>", { id: "phoneNumber" })
       .text("Phone Number: " + phoneNumber)
-      .appendTo($("#results2"));
-    $("<br>").appendTo($("#results2"));
+      .appendTo($("#results"));
+    $("<br>").appendTo($("#results"));
     localStorage.setItem("restName" + [i], JSON.stringify(all));
   }
-
-})
-
-$("#six").on("click", function () {
-  $("#five").removeClass("current")
-  $("#six").addClass("current")
-  $("#results").addClass("hide")
-  $("#results2").removeClass("hide")
 })
 
 $("#seven").on("click", function() {
   $("#six").removeClass("current");
   $("#seven").addClass("current");
-  $("#results, #results2").empty();
+  $("#results").empty();
 
   var local = JSON.parse(localStorage.getItem("response4"));
 
@@ -396,7 +402,6 @@ $("#seven").on("click", function() {
     console.log(all);
     var divEl = $("<h4>");
     divEl.attr("data-rest", JSON.stringify(all));
-    $("#results").removeClass("hide")
     divEl.text(restName).appendTo($("#results"));
     $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
     $("<p>", { id: "address" }).text(address).appendTo($("#results"));
@@ -406,6 +411,15 @@ $("#seven").on("click", function() {
     $("<br>").appendTo($("#results"));
     localStorage.setItem("restName" + [i], JSON.stringify(all));
   }
+})
+
+$("#eight").on("click", function () {
+  $("#seven").removeClass("current")
+  $("#eight").addClass("current")
+  $("#results").empty()
+
+  var local = JSON.parse(localStorage.getItem("response4"));
+
   for (var i = 10; i < 20; i++) {
     var restName = local.restaurants[i].restaurant.name;
     var cuisineType = local.restaurants[i].restaurant.cuisines;
@@ -425,24 +439,15 @@ $("#seven").on("click", function() {
     console.log(all);
     var divEl = $("<h4>");
     divEl.attr("data-rest", JSON.stringify(all));
-    $("#results2").addClass("hide")
-    divEl.text(restName).appendTo($("#results2"));
-    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results2"));
-    $("<p>", { id: "address" }).text(address).appendTo($("#results2"));
+    divEl.text(restName).appendTo($("#results"));
+    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
+    $("<p>", { id: "address" }).text(address).appendTo($("#results"));
     $("<p>", { id: "phoneNumber" })
       .text("Phone Number: " + phoneNumber)
-      .appendTo($("#results2"));
-    $("<br>").appendTo($("#results2"));
+      .appendTo($("#results"));
+    $("<br>").appendTo($("#results"));
     localStorage.setItem("restName" + [i], JSON.stringify(all));
   }
-
-})
-
-$("#eight").on("click", function () {
-  $("#seven").removeClass("current")
-  $("#eight").addClass("current")
-  $("#results").addClass("hide")
-  $("#results2").removeClass("hide")
 })
 
 
