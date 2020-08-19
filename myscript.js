@@ -115,7 +115,8 @@ $(document).ready(function (event) {
     ];
     if (cuisineType.indexOf(cuisineName) === -1) {
       alert("Try another cuisine!");
-      preventDefault();
+      $("#userInput").val("");
+      return false;
     } else {
     }
     var qURL =
