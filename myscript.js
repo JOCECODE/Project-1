@@ -25,7 +25,7 @@ $(document).ready(function (event) {
       });
     // ONCLICK TO PAGE 3
   });
-  $("#results").on("click", function () {
+  $("h4").on("click", function () {
     var t = $(this).data();
     var restObj = {
       name: t.rest.restName,
