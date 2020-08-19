@@ -1,4 +1,5 @@
 var localStorage = JSON.parse(localStorage.getItem("response"));
+
 $(document).ready(function (event) {
   $("#cuisineSearch").on("click", function (event) {
     event.preventDefault();
@@ -24,7 +25,7 @@ $(document).ready(function (event) {
       });
     // ONCLICK TO PAGE 3
   });
-  $("h4").on("click", function () {
+  $("#results").on("click", function () {
     var t = $(this).data();
     var restObj = {
       name: t.rest.restName,
@@ -33,6 +34,7 @@ $(document).ready(function (event) {
       longitude: t.rest.long,
       latitude: t.rest.lat,
       number: t.rest.phoneNumber,
+
     };
     localStorage.setItem("thisRestObj", JSON.stringify(restObj));
     console.log(restObj);
@@ -60,19 +62,13 @@ function displayMarker() {
 }
 function initMap() {
   map = new google.maps.Map(document.getElementById("googleMaps"), {
-    center: { lat: 34.024, lng: -118.496 },
-    zoom: 10,
+    center: { lat: 34.052, lng: -118.243},
+    zoom: 11,
   });
   displayMarker();
 }
 
-function initMap2() {
-  map = new google.maps.Map(document.getElementById("googleMaps2"), {
-    center: { lat: 34.024, lng: -118.496 },
-    zoom: 10,
-  });
-  displayOneMarker();
-}
+
 
 function displayOneMarker(){
   var newlocal =JSON.parse(localStorage.getItem("thisRestObj"));
@@ -84,6 +80,14 @@ function displayOneMarker(){
     map: map,
   });
 
+}
+
+function initMap2() {
+  map = new google.maps.Map(document.getElementById("googleMaps2"), {
+    center: { lat: 34.052, lng: -118.243 },
+    zoom: 12,
+  });
+  displayOneMarker();
 }
 
 function renderThisRestObj() {
@@ -117,10 +121,9 @@ function renderItems() {
     var divEl = $("<h4>");
     divEl.attr("data-rest", JSON.stringify(all));
     divEl.text(restName).appendTo($("#results"));
-    $("<h3>", { id: "cuisineType" }).text(cuisineType).appendTo($("#results"));
     $("<p>", { id: "address" }).text(address).appendTo($("#results"));
     $("<p>", { id: "phoneNumber" })
-      .text("Phone Number: " + phoneNumber)
+      .text (phoneNumber)
       .appendTo($("#results"));
     $("<br>").appendTo($("#results"));
     localStorage.setItem("restName" + [i], JSON.stringify(all));
