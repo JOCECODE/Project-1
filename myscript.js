@@ -211,7 +211,7 @@ function displayOneMarker() {
 function initMap2() {
   map = new google.maps.Map(document.getElementById("googleMaps2"), {
     center: { lat: 34.052, lng: -118.243 },
-    zoom: 12,
+    zoom: 11.5,
   });
   displayOneMarker();
 }
