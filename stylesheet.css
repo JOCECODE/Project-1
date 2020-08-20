@@ -1,48 +1,42 @@
-
-body{
+body {
   background-color: #000000 !important;
 }
 
-.firstpage{
-
-  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(labackground.jpg);
-  background-size:cover;
-  background-position:center;
-  display:flex;
+.firstpage {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(images/labackground.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
   justify-content: center;
   align-items: center;
   font-family: sans-serif;
   color: white;
-  padding:200px;
-  
- 
-
-  
-
+  padding: 200px;
 }
 
 .header {
-  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(labackground.jpg);
-  background-size:cover;
-  background-position:center;
-  display:flex;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(images/labackground.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
   justify-content: center;
   align-items: center;
   font-family: sans-serif;
   color: white;
- 
 }
 
-.everything{
-  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(labackground.jpg);
-  background-position:center;
+.everything {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(images/labackground.jpg);
+  background-position: center;
   background-size: cover;
-  display:flex;
+  display: flex;
   font-family: sans-serif;
   color: white;
   width: 100%;
-  padding:100px;
-
+  padding: 100px;
 }
 
 #results {
@@ -50,7 +44,7 @@ body{
 }
 
 .restaurantcontainer {
-  font-family: 'Libre Baskerville', serif;
+  font-family: "Libre Baskerville", serif;
   color: white;
   float: left;
   padding: 70px;
@@ -59,56 +53,41 @@ body{
   border-color: lightgray;
 }
 
-.title{
-  font-family: 'Libre Baskerville', serif;
+.title {
+  font-family: "Libre Baskerville", serif;
   font-size: 25px;
   text-decoration: underline;
 }
 .mapsContainer {
-  position: sticky; top:100px;
+  position: sticky;
+  top: 100px;
   margin-left: 10%;
   width: 50%;
-  height:500px;
-  
-
-}
-#userInput{
-  clear:both;
-}
-
-h1{
-  margin-right: 15px;
-}
-
-.stack{
-  margin-top: 15px;
-
+  height: 500px;
 }
 
 #googleMaps {
   padding: 100px;
   height: 90%;
-
 }
 
-#cuisineType{
+#cuisineType {
   font-size: 20px;
 }
 
 .mapsContainer2 {
   width: 45%;
-  padding:50px;
+  padding: 50px;
   float: right;
   margin-left: 100px;
 }
 
 #googleMaps2 {
-  height:500px;
+  height: 500px;
 }
 
-
-.resultDetails{
-  font-family: 'Libre Baskerville', serif;
+.resultDetails {
+  font-family: "Libre Baskerville", serif;
   color: white;
   border-style: double;
   border-color: lightgray;
@@ -117,74 +96,66 @@ h1{
   padding: 50px;
   margin-top: 100px;
   margin-left: 50px;
-  
-  
-  
 }
-.picture{
-  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(labackground.jpg);
-  background-size:cover;
-  background-position:center;
-  display:flex;
+.picture {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(images/labackground.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
   padding-bottom: 150px;
 }
 .header {
-  background-color: black}
-
+  background-color: black;
+}
 
 .example_e {
-border: none;
-color:  white !important;
-font-weight: 200;
-padding: 20px;
-text-transform: uppercase;
-border-radius: 6px;
-display: inline-block;
-transition: all 0.3s ease 0s;
+  border: none;
+  color: white !important;
+  font-weight: 200;
+  padding: 20px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
 }
 
 .example_e:hover {
-  color:grey !important;
+  color: grey !important;
   font-weight: 700 !important;
   letter-spacing: 3px;
   background: none;
-  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
   transition: all 0.3s ease 0s;
-  }
+}
 
-.fa-home{
+.fa-home {
   color: gray;
-  
 }
 
-
-
-h1{
-  font-family: 'Libre Baskerville', serif;
-  font-size:50px;
+h1 {
+  font-family: "Libre Baskerville", serif;
+  font-size: 50px;
 }
 
-
-
-.phead{
+.phead {
   font-size: 15px;
   font-weight: bold;
   text-align: center;
 }
 
-
-.name{
+.name {
   font-size: 15px;
   color: grey;
 }
 
-.created{
+.created {
   font-size: 15px;
   font-weight: bold;
 }
 
-.pictures{
+.pictures {
   padding-top: 30px;
 }
 
@@ -192,75 +163,61 @@ h1{
   width: 50%;
   float: left;
   color: white;
-  padding:75px;
+  padding: 75px;
   text-align: center;
-  font-family: 'Libre Baskerville', serif;
-  border-right: white solid ;
+  font-family: "Libre Baskerville", serif;
+  border-right: white solid;
   font-size: 12px;
 }
-
 
 .about2 {
   width: 50%;
-  float:right;
+  float: right;
   color: white;
-  padding:75px;
+  padding: 75px;
   text-align: center;
-  font-family: 'Libre Baskerville', serif;
+  font-family: "Libre Baskerville", serif;
   font-size: 12px;
- 
 }
 
-
-
-
-.emails3{
- width: 50%;
-  float: left;
-  color: white;
-  text-align: center;
-  font-family: 'Libre Baskerville', serif;
-  border-right: white solid ;
-  font-size: 12px;
-  padding:75px
-
-  
-}
-
-.about3{
-  width:50%;
- float:right;
-  color: white;
-  text-align: center;
-  font-family: 'Libre Baskerville', serif;
-  font-size: 12px;
-  padding:75px;
-  
-}
-
-.emails1{
+.emails3 {
   width: 50%;
   float: left;
   color: white;
   text-align: center;
-  font-family: 'Libre Baskerville', serif;
-  border-right: white solid ;
+  font-family: "Libre Baskerville", serif;
+  border-right: white solid;
+  font-size: 12px;
+  padding: 75px;
+}
+
+.about3 {
+  width: 50%;
+  float: right;
+  color: white;
+  text-align: center;
+  font-family: "Libre Baskerville", serif;
+  font-size: 12px;
+  padding: 75px;
+}
+
+.emails1 {
+  width: 50%;
+  float: left;
+  color: white;
+  text-align: center;
+  font-family: "Libre Baskerville", serif;
+  border-right: white solid;
   font-size: 15px;
-  padding:75px;
-  
-
+  padding: 75px;
 }
 
-.about1{
-  width:50%;
-  float:right;
-   color: white;
-   text-align: center;
-   font-family: 'Libre Baskerville', serif;
-   font-size: 15px;
-   padding:75px;
-  
-   
-
+.about1 {
+  width: 50%;
+  float: right;
+  color: white;
+  text-align: center;
+  font-family: "Libre Baskerville", serif;
+  font-size: 15px;
+  padding: 75px;
 }
-
