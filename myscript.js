@@ -1,6 +1,15 @@
 // GLOBAL VARIABLES
 var localStorage = JSON.parse(localStorage.getItem("response"));
 
+// DISABLE ENTER BUTTON FOR FORM
+$(document).ready(function () {
+  $("#form1").bind("keypress", function (e) {
+    if (e.keyCode == 13) {
+      return false;
+    }
+  });
+});
+
 // AJAX CALL WHEN DOCUMENT IS READY
 $(document).ready(function (event) {
   $("#cuisineSearch").on("click", function (event) {
