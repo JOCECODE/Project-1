@@ -28,28 +28,29 @@
     <script src="https://kit.fontawesome.com/2fbe85db38.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div class= "picture">
-    
+    <main class= "picture">
+
+      <!-- CHOSEN RESTAURANT DISPLAY  -->
     <div class="resultDetails">
       <h1 class="restResults" id="restRest"></h1>
       <p class="hours">hours of operation</p>
       <p class="number">contact phone number</p>
       <p class="address">address</p>
-
+      
+      <!-- BUTTON TO RETURN TO HOMEPAGE -->
       <div class="button_cont" align ="center"><i class="fas fa-home"></i><a class="example_e" href="index.html" target="_blank" rel="nofollow noopener">Back to HomePage</a></div>
     </div>
 
-
+<!-- GOOGLE MAPS MAP  -->
     <div class="mapsContainer2">
       <div id="googleMaps2">
         <p>INTERACTIVE MAP WILL 
           GO HERE</p>
       </div>
     </div>
-    
-    
+  </main>
 
-   </div>
+  <!-- CONTACT EMAILS -->
     <footer class="contacts3">
       <div class="emails3">
         <p class= created> Created By: </p>
@@ -63,13 +64,19 @@
         <p> emlee088@gmail.com</p>
       </div>
       <div class= about3>
+
+        <!-- PROJECT ABOUT INFORMATION -->
         <div class=aboutProject>
           <p class=phead> About Our Project</p>
           <p> This site allows the user to search for restaurants in the los angeles area by the cuisine. 
             It then provides information about each restaurant in detail along with the location generated on google maps. </p>
         <div class= pictures>
           <p class=power> powered by</p>
+
+          <!-- ZOMATO ICON SOURCE -->
           <img src="images/zomato.png" alt="zomato" height= "100" width= "80">
+          
+          <!-- GOOGLE MAPS ICON SOURCE -->
           <img src="images/maps.jpg" alt="googlemaps" height= "100" width= "100">
         </div>
         </div>
@@ -77,11 +84,13 @@
       
     </footer>
 
-
+    <!-- GOOGLE MAPS INIT 2 FUNCTION SOURCE -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCykU04NtL76bdBse3BGOsVY43OWKXqiAY&callback=initMap2"
       async defer
     ></script>
+
+    <!-- EXTERNAL JAVASCRIPT (myscript.js) SCRIPT SOURCE -->
     <script src="myscript.js"></script>
   </body>
 </html>

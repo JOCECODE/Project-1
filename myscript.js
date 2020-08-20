@@ -29,7 +29,7 @@ $(document).ready(function (event) {
   });
 
   // ON CLICK EVENT LISTENER FOR H4 ELEMENT ON INDEX2.HTML
-  $("h4, .phoneNumber, .address").on("click", function () {
+  $("h4, .newNumber, .newAdd").on("click", function () {
     var t = $(this).data();
     var restObj = {
       name: t.rest.restName,
@@ -121,14 +121,21 @@ function renderItems() {
     all.lat = lat;
     console.log(all);
     var divEl = $("<h4>");
+    var pAddress = $("<p>", { class: "newAdd" });
+    var pNumber = $("<p>", { class: "newNumber" });
     divEl.attr("data-rest", JSON.stringify(all));
+    pAddress.attr("data-rest", JSON.stringify(all));
+    pNumber.attr("data-rest", JSON.stringify(all));
     divEl.text(restName).appendTo($("#results"));
-    $("<p>", { class: "address" }).text(address).appendTo($("#results"));
-    $("<p>", { class: "phoneNumber" })
-      .text(phoneNumber)
-      .appendTo($("#results"));
-    $(".address").attr("data-rest", JSON.stringify(all));
-    $(".phoneNumber").attr("data-rest", JSON.stringify(all));
+    pAddress.text(address).appendTo($("#results"));
+    pNumber.text(phoneNumber).appendTo($("#results"));
+    // $(".address").attr("data-rest", JSON.stringify(all));
+    // $(".phoneNumber").attr("data-rest", JSON.stringify(all));
+    // $("<p>", { class: "address" }).text(address).appendTo($("#results"));
+    // $("<p>", { class: "phoneNumber" })
+    // .text(phoneNumber)
+    // .appendTo($("#results"));
+
     $("<br>").appendTo($("#results"));
     localStorage.setItem("restName" + [i], JSON.stringify(all));
   }
