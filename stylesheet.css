@@ -221,3 +221,14 @@ h1 {
   font-size: 15px;
   padding: 75px;
 }
+
+h4 {
+  cursor: pointer;
+}
+
+.newAdd {
+  cursor: pointer;
+}
+.newNumber {
+  cursor: pointer;
+}
