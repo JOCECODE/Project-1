@@ -153,7 +153,7 @@ $(document).ready(function (event) {
       });
   });
 
-  // ON CLICK EVENT LISTENER FOR H4 ELEMENT ON INDEX2.HTML
+  // ON CLICK EVENT LISTENER ON INDEX2.HTML
   $("h4, .newNumber, .newAdd").on("click", function () {
     var t = $(this).data();
     var restObj = {
